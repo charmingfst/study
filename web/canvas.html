@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<style type="text/css">
+	body{background: black;}
+	#can{
+		background: white;
+	}
+
+</style>
+<body>
+<canvas id = "can" width="400" height="400"></canvas>
+<script type="text/javascript">
+	var oCan = document.getElementById("can");
+	var oGC = oCan.getContext("2d");
+	oGC.strokeStyle="red";
+	// canvas.moveTo(100, 100);
+	// canvas.lineTo(200,200);
+	// canvas.stroke();
+
+	oCan.onmousedown = function(ev)
+	{
+		// alert("hello");
+		var ev = ev || window.event;
+		oGC.moveTo(ev.clientX-oCan.offsetLeft, ev.clientY-oCan.offsetTop);
+		document.onmousemove = function(ev)
+		{
+			// alert("hello");
+			var ev = ev || window.event;
+			oGC.lineTo(ev.clientX-oCan.offsetLeft, ev.clientY-oCan.offsetTop);
+			oGC.stroke();
+		}
+		document.onmouseup = function()
+		{
+			document.onmousemove = null;
+			document.onmouseup = null;
+		}
+	}
+	var img = new Image();
+	img.src = "hello.png";
+	img.onload = function()
+	{
+		oGC.drawImage(img, 0, 0);
+	}
+	
+	// var oC = document.getElementById('can');
+	
+	// var oGC = oC.getContext('2d');  
+	
+	// oC.onmousedown = function(ev){
+	// 	var ev = ev || window.event;
+	// 	oGC.moveTo(ev.clientX-oC.offsetLeft,ev.clientY-oC.offsetTop);
+	// 	document.onmousemove = function(ev){
+	// 		var ev = ev || window.event;
+	// 		oGC.lineTo(ev.clientX-oC.offsetLeft,ev.clientY-oC.offsetTop);
+	// 		oGC.stroke();
+	// 	};
+	// 	document.onmouseup = function(){
+	// 		document.onmousemove = null;
+	// 		document.onmouseup = null;
+	// 	};
+	// };
+
+</script>
+</body>
+</html>

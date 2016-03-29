@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+
+<Button id="btn">随机选彩票</Button>
+<div id="div1"></div>
+<script>
+	var btn = document.getElementById("btn");
+	var oDiv = document.getElementById("div1");
+	var json = {};
+	btn.onclick = function(){
+		var arr = randomNum(35,7);
+		var num = Math.random();
+		json[num] = arr;
+		oDiv.innerHTML = arr;
+		window.location.hash = num;
+	}
+	window.onhashchange = function(){
+		alert("change");
+		oDiv.innerHTML = json[window.location.hash.substring(1)];
+	}
+	function randomNum(sum, num)
+	{
+		var arr = [];
+		var newArr = [];
+		for(var i = 0; i < sum; i++)
+		{
+			arr.push(i);
+		}
+		for(var i = 0; i < num; i++)
+		{
+			newArr.push(arr.splice(Math.floor(Math.random()*arr.length),1));
+		}
+		return newArr;
+	}
+
+</script>
+ 
+ </body>
+</html>

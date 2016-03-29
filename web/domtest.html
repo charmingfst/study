@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+	<img bbb="aaa"/>
+  <script type="text/javascript">
+
+	function parserXml()
+	{
+		var xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?><root name=\"root\" id=\"root\">root-value<child name=\"kdc\">ky <p></p> yk</child></root>";
+	
+		var xmlDoc = loadXML(xml);
+		var child = xmlDoc.getElementsByTagName("child")[0];
+		alert(child.innerHTML);
+		var img = document.getElementsByTagName("img")[0];
+		alert(img.bbb);
+	
+	}
+	
+	function loadXML(xmlString){  
+		var xmlDoc;  
+		if (window.ActiveXObject)  
+		{  
+			xmlDoc = new ActiveXObject('Microsoft.XMLDOM');  
+			if(!xmlDoc) xmldoc = new ActiveXObject("MSXML2.DOMDocument.3.0");  
+			xmlDoc.async = false;  
+			xmlDoc.loadXML(xmlString);  
+		}else if (document.implementation && document.implementation.createDocument)  
+		{  
+			//xmlDoc = document.implementation.createDocument('', '', null);  
+			//xmlDoc.load(xmlFile);  
+			var domParser = new DOMParser();  
+			xmlDoc = domParser.parseFromString(xmlString, 'text/xml');  
+		}else  
+		{  
+			return null;  
+		}  
+		return xmlDoc;  
+	}  
+	parserXml();
+  </script>
+ </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+
+<style type="text/css">
+	body{background: #000; text-align: center;font: 50px/200px "微软雅黑"; }
+	
+	h1{ display: inline-block; color: rgba(255,255,255,0.4); background:  -webkit-linear-gradient(-30deg, rgba(255,255,255, 0) 120px, rgba(255,255,255, 1) 180px, rgba(255,255,255,1) 220px, rgba(255,255,255,0) 280px) no-repeat -300px 0px;-webkit-background-clip:text;}
+</style>
+</head> 
+<body>
+	<h1>向右滑动</h1>
+	<script type="text/javascript">
+		var oTimer = null;
+		var iLeft = -300;
+		var oH1 = document.getElementsByTagName("h1")[0];
+		function moverTo()
+		{
+			oTimer=setInterval(function(){
+				iLeft += 10;
+				oH1.style.backgroundPosition = iLeft+"px 0px";
+				if (iLeft == 500) {
+					iLeft = -300;
+					clearInterval(oTimer);
+				}
+			}, 10);
+		} 
+		setInterval(function(){
+			moverTo();
+		},3000);
+		// moverTo();
+	</script>
+</body>
+</html>

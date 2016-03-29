@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  <button id="btn">press</button>
+  <script type="text/javascript">
+	function debounce(func, wait, immediate) {
+		var timeout;
+		return function() {
+			var context = this, args = arguments;
+			var later = function() {
+				timeout = null;
+				if (!immediate) func.apply(context, args);
+			};
+			var callNow = immediate && !timeout;
+			clearTimeout(timeout);
+			timeout = setTimeout(later, wait);
+			if (callNow) func.apply(context, args);
+		};
+	};
+	var btn = document.getElementById("btn");
+	var myEfficientFn = debounce(function() {
+	// All the taxing stuff you do
+		console.log("hehe");
+	}, 10000);
+//	btn.addEventListener('click', myEfficientFn);
+	
+	function once(fn, context) { 
+	var result;
+	var self = this;
+	console.log(self);
+	return function() { 
+		if(fn) {
+			fn.apply(context || this, arguments);
+			console.log(this);
+			fn = null;
+		}
+
+	};
+}
+
+	// Usage
+	var canOnlyFireOnce = once(function() {
+		console.log('Fired!');
+	});
+
+	
+	//btn.addEventListener('click', canOnlyFireOnce);
+	function test(attrs)
+	{
+		alert("hello");
+		alert(arguments[1]);
+	}
+	test.apply(btn,["aa","bb"]);
+		
+  </script>
+ </body>
+</html>

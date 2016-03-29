@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<style type="text/css">
+	body{background: black;}
+	#can {
+		background: white;
+	}
+
+</style>
+<body>
+	
+	<canvas id = "can" width="400" height="400"></canvas>
+<script type="text/javascript">
+	
+	var oC = document.getElementById("can");
+	var oGC = oC.getContext("2d");
+
+	//oGC.translate(100,100);
+	var num2 = 0;
+	var num = 0;
+	setInterval(function(){
+		// num++;
+		// oGC.save();
+		// oGC.clearRect(0,0,oCan.width,oCan.height);
+		// oGC.rotate(num*Math.PI/180);
+		// oGC.fillRect(0,0,100,100);
+		// oGC.restore();
+
+		num++;
+		
+		oGC.save();
+		//oGC.translate(0,0)
+		oGC.clearRect(0,0,oC.width,oC.height);
+		 oGC.translate(100,100)
+		
+		 //oGC.translate(-50,-50);
+		
+		 if(num2 == 360){
+		 	value = -1;
+		 }
+		 else if(num2 == 0){
+		 	value = 1;
+		 }
+		
+		 num2 += value;
+		
+		 oGC.scale( num2*1/100,num2*1/100 );
+		
+		oGC.rotate(num*Math.PI/180);
+		
+		oGC.translate(-50,-50);
+		
+		oGC.fillRect(0,0,100,100);
+		
+		oGC.restore(); 
+	}, 10);
+
+</script>
+
+</body>
+</html>

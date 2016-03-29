@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<style type="text/css">
+	body{background: black;}
+	#can{
+		background: white;
+	}
+
+</style>
+<body>
+
+<input type="range">
+<canvas id = "can" width="400" height="400"></canvas>
+<script type="text/javascript">
+	var oCan = document.getElementById("can");
+	var oGC = oCan.getContext("2d");
+	oGC.moveTo(200,200);
+	oGC.arc(200,200, 150, 0, 360*Math.PI/180, false);
+	oGC.stroke();
+
+</script
+</body>
+</html>

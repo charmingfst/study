@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<mate charset="utf-8">
+	<title></title>
+	<style id="css" type="text/css">
+	#clock{
+		margin: 100px auto;
+		width: 200px;
+		height: 200px;
+		border: 1px solid #000;
+		border-radius: 100px;
+		position: relative;
+	}
+	
+	#list{list-style: none;
+		padding: 0px;
+		margin: 0px;
+		height: 200px;
+		position: relative;
+
+	}
+	#time{
+		list-style: none;
+		padding: 0px;
+		margin: 0px;
+		height: 200px;
+		position: relative;
+		top: -200px;
+	}
+	#list li{height: 6px; position: absolute; left:99px; width:2px; background:#000; -webkit-transform-origin:center 100px;}
+	/*#list li:nth-of-type(2){-webkit-transform:rotate(6deg);}
+	#list li:nth-of-type(3){-webkit-transform:rotate(12deg);}
+	#list li:nth-of-type(4){-webkit-transform:rotate(18deg);}
+	#list li:nth-of-type(5){-webkit-transform:rotate(24deg);}
+	#list li:nth-of-type(6){-webkit-transform:rotate(30deg);}*/
+	#list li:nth-of-type(5n+1){height: 12px;}
+	#time li{width:12px; text-align:center; font:12px "宋体"; position: absolute; left: 94px; top:12px;-webkit-transform-origin:6px 88px;}
+	/*#time li:nth-of-type(2){-webkit-transform:rotate(30deg);}
+	#time li:nth-of-type(3){-webkit-transform:rotate(60deg);}
+	#time li:nth-of-type(4){-webkit-transform:rotate(90deg);}
+	#time li:nth-of-type(5){-webkit-transform:rotate(120deg);}*/
+	#hour{background: #000; border-radius: 4px; width: 6px; height: 35px; position: absolute; left: 97px; top: 65px;
+		-webkit-transform-origin:bottom;}
+	#min{background: #c0c; border-radius: 4px; width: 4px; height: 45px; position: absolute; left: 98px; top: 55px;
+		-webkit-transform-origin:bottom;}
+	#sec{background:red; border-radius: 2px; width: 2px; height: 65px; position: absolute; left: 99px; top: 35px;
+		-webkit-transform-origin:bottom;}
+	#dot{background: #000; border-radius: 50%; width: 10px; height: 10px; position: absolute; left: 95px; top: 95px;}
+	</style>
+</head>
+<body>
+<div id="clock">
+	<ul id="list">
+		
+	</ul>
+	<ul id="time">
+	
+	</ul>
+	<div id="hour"></div>
+	<div id="min"></div>
+	<div id="sec"></div>
+	<div id="dot"></div>
+</div>
+
+<script type="text/javascript">
+
+var oList = document.getElementById("list");
+var oCss = document.getElementById("css");
+var oTime = document.getElementById("time");
+var iList = "";
+var iCss = "";
+var itime= "<li>12</li>";
+var oHour = document.getElementById("hour");
+var oMin = document.getElementById("min");
+var oSec = document.getElementById("sec");
+for (var i = 0; i < 60; i++) {
+	iCss += "#list li:nth-of-type("+(i+1)+"){-webkit-transform:rotate("+(i*6)+"deg);}";
+	iList += "<li></li>";
+}
+oList.innerHTML  = iList;
+oCss.innerHTML += iCss; 
+var iCss2 = "";
+for (var i = 1; i < 12; i++) {
+	itime += "<li>"+i+"</li>"
+	iCss2 += "#time li:nth-of-type("+(i+1)+"){-webkit-transform:rotate("+i*30+"deg);}";
+}
+oTime.innerHTML = itime;
+oCss.innerHTML += iCss2;
+
+	function setTime()
+	{
+		var date = new Date;
+		var sec = date.getSeconds();
+		var min = date.getMinutes()+sec/60;
+		var hour = date.getHours()+min/60;
+		oSec.style.WebkitTransform = "rotate("+(sec*6)+"deg)";
+		oMin.style.WebkitTransform = "rotate("+(min*6)+"deg)";
+		oHour.style.WebkitTransform = "rotate("+(hour*30)+"deg)"
+
+	}
+	setTime();
+	setInterval(function(){
+		setTime();
+	},1000);
+	
+</script>
+</body>
+</html>

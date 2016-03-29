@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <style>
+ #ul1 {list-style:none;}
+ #ul1 li {width:100px; height:20px;background:gray; display:block; margin:10px;}
+ #div1 {width:100px;height:100px; background:pink;margin:100px auto;}
+ </style>
+ <body>
+
+ <ul id ="ul1">
+	<li draggable="true">a</li>
+	<li draggable="true">b</li>
+	<li draggable="true">c</li>
+ </ul>
+ <div id = "div1">
+ </div>
+ <script>
+	var oUl = document.getElementById("ul1");
+	var oli = document.getElementsByTagName("li");
+	var oDiv = document.getElementById("div1");
+	for(var i = 0; i < oli.length; i++)
+	{
+		oli[i].ondragstart = function(ev)
+		{
+			var ev = ev || window.event;
+			this.style.background = "blue";
+			//每次计算索引
+			for(var i = 0; i < oli.length; i++)
+			{
+				oli[i].index = i;
+			}
+			console.log(this.index);
+			ev.dataTransfer.setData("index", this.index);
+			ev.dataTransfer.effectAllowed = "copy"; //设置光标样式
+			
+		}
+		var num = 0;
+		oli[i].ondrag = function() //在开始和结束之间一直执行
+		{
+			document.title = num++;
+		}
+		oli[i].ondragend = function()
+		{
+			this.style.background = "gray";
+		}
+	}
+	oDiv.ondragenter = function()
+	{
+		this.style.background = "red";
+	}
+	oDiv.ondragover = function(ev)
+	{
+		var ev = ev||window.event;
+		//要想触发drop事件，必须在dragover中阻止默认事件
+		ev.preventDefault();
+	}
+	oDiv.ondragleave = function()
+	{
+		this.style.background = "pink";
+	}
+	oDiv.ondrop = function(ev)
+	{
+		var ev = ev || window.event;
+		this.style.background = "pink";
+		// alert(ev.dataTransfer.getData("index")); 
+		if(oUl.hasChildNodes()) //当ul下还存在子节点时
+		{
+			oUl.removeChild(oli[ev.dataTransfer.getData("index")]);
+		}
+	}
+ </script>
+ </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+
+<style type="text/css">
+label { float:left; margin: 0px 5px; overflow: hidden; position: relative;}
+label input {position: absolute; left: -10px; top:-10px}
+span {display:block; width: 50px; height: 50px; border:3px solid #000;}
+input:checked~span { background: red;}
+
+
+</style>
+
+<body>
+	<label>
+		<input type="radio" name="tab"/>
+		<span></span>
+	</label>
+
+	<label>
+		<input type="radio" name="tab" />
+		<span></span>
+	</label>
+
+	<label>
+		<input type="radio" name="tab"/>
+		<span></span>
+	</label>
+</body>
+</html>

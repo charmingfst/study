@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style type="text/css">
+  .blockquote:before {
+	content: open-quote;
+   }
+  .blockquote:after {
+	content: '<span>hell0<span>';
+   }
+   p:target
+   { 
+	border: 2px solid #D4D4D4;
+	background-color: #e5eecc;
+   } 
+  </style>
+ </head>
+ <body>
+  <p><a href="#news1">跳转至内容 1</a></p>
+  <p><a href="#news2">跳转至内容 2</a></p>
+  <p class="blockquote" id="hello">请点击上面的链接，:target 选择器会突出显示当前活动的 HTML 锚。</p>
+  <p id="news1"><b>内容 1...</b></p>
+  <p id="news2"><b>内容 2...</b></p>
+ </body>
+</html>

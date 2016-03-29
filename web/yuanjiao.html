@@ -1,0 +1,22 @@
+<<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<style type="text/css">
+	.box {width: 400px; height: 400px; margin: 50px auto; transition:3s linear;}
+	.box div {width: 180px; height: 180px; border: 1px solid #000; margin: 10px; box-sizing: border-box;
+		float: left; background: url(./yellow.jpg);}
+	.box div:nth-of-type(1),.box div:nth-of-type(4){border-radius: 0px 60%}
+	.box div:nth-of-type(2),.box div:nth-of-type(3){border-radius: 60% 0px;}
+	.box:hover {-webkit-transform:rotate(360deg);}
+</style>
+<body>
+	<div class="box">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</body>
+</html>

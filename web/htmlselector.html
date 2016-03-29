@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	#div1 {
+		border:3px solid #000;
+	}
+  </style>
+ </head>
+ <body>
+  <div id="div1">hello</div>
+  <div class = "div2">world</div>
+  <script>
+	var div = document.querySelector("#div1");
+	div.style.backgroundColor="#c3c3c3";
+	var div2 = document.querySelector(".div2");
+	div2.style.backgroundColor="#00ff00";
+	div2.style.height="200px";
+	div2.style.position="relative";
+	div2.style.top="-200px";
+
+	div.style.height="400px";
+	alert(div.innerHTML);
+	alert(document.title);
+	setTimeout(function(){document.title="1222"},3000);
+	alert(div.offsetHeight);
+	alert(div.clientHeight);
+	alert(div.offsetLeft);
+	alert(div.clientLeft);
+  </script>
+ </body>
+</html>

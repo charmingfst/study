@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+    <script src="https://code.angularjs.org/1.4.8/angular.js"></script>
+    <!-- <script src="https://code.angularjs.org/1.2.8/angular.js"></script> -->
+	<script >
+	//module第一个String参数是该模块的名字，第二个参数是所依赖的模块（这里暂时用不着），返回了myApp这个模块.
+	angular.module('myApp', []).controller('CostCtrl',CostCtrl).controller("FirstCtrl", FirstCtrl);
+	function FirstCtrl($scope){
+    	$scope.data = {message: "World"};
+	} 
+	function CostCtrl($scope)
+	{
+		$scope.cost = 1000;
+		$scope.tax = true;
+		$scope.$watch("cost", function(){
+			$scope.cost_tax = $scope.cost*0.15;
+			
+		});
+		$scope.$watch("tax", function(){
+			$scope.bill_display = $scope.tax?"block":"none";
+		});
+		$scope.add = function()
+		{
+			$scope.total_cost = $scope.cost+$scope.cost_tax;
+		}
+		
+	}
+	</script>
+
+    </head>
+	
+    <body  >
+        <p ng-controller="FirstCtrl">Hello {{data.message}}!</p>
+		<div ng-controller="CostCtrl"><input type="checkbox" ng-model="tax"/><span>tax</span>
+		<input placeHolder="cost" ng-model="cost">
+		<p>the money is {{cost|currency:"￥"}}</p>
+		<div style="display:{{bill_display}}"><p>tax is {{cost_tax}}</p><button ng-click="add()">add</button></div>
+		<p style="display:{{bill_display}}">total money is {{total_cost}}</p>
+		</div>
+    </body>
+</html>
